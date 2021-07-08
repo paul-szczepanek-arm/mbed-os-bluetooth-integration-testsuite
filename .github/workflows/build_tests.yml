@@ -29,13 +29,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ble-cliapp-GCC_ARM-NRF52840_DK-${{ github.event.pull_request.head.sha || github.sha }}
-          path: /BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
+          path: ./BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
 
       - name: Uploading Binaries
         uses: actions/upload-artifact@v2
         with:
           name: ble-cliapp-GCC_ARM-DISCO_L475VG_IOT01A-${{ github.event.pull_request.head.sha || github.sha }}
-          path: /BUILD/DISCO_L475VG_IOT01A/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
+          path: ./BUILD/DISCO_L475VG_IOT01A/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.bin
 
       - name: Trigger lava workflow
         uses: benc-uk/workflow-dispatch@v1
