@@ -27,9 +27,14 @@ jobs:
           mbed compile -t GCC_ARM -m NRF52840_DK --profile toolchains_profile.json || exit 1
           pwd
           echo ${{ github.workspace }}
+          echo "ls"
+          ls
           ls $HOME
-          //ls ${{ github.workspace }}
-          //ls ${{ github.workspace }}/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
+          ls $HOME/ble-cliapp/
+          ls $HOME/ble-cliapp/BUILD/
+          ls $HOME/ble-cliapp/BUILD/NRF52840_DK/
+          ls $HOME/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE
+          ls $HOME/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
 
       - name: Uploading Binaries
         uses: actions/upload-artifact@v2
