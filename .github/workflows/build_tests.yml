@@ -28,18 +28,19 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ble-cliapp-GCC_ARM-NRF52840_DK-${{ github.event.pull_request.head.sha || github.sha }}
-          path: /__w/mbed-os-bluetooth-integration-testsuite/mbed-os-bluetooth-integration-testsuite/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
+          path: ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
           if-no-files-found: error
 
       - name: Build DISCO cli-app
         run: |
+          cd ble-cliapp
           mbed compile -t GCC_ARM -m DISCO_L475VG_IOT01A --profile toolchains_profile.json || exit 1
 
       - name: Uploading Binaries
         uses: actions/upload-artifact@v2
         with:
           name: ble-cliapp-GCC_ARM-DISCO_L475VG_IOT01A-${{ github.event.pull_request.head.sha || github.sha }}
-          path: /__w/mbed-os-bluetooth-integration-testsuite/mbed-os-bluetooth-integration-testsuite/ble-cliapp/BUILD/DISCO_L475VG_IOT01A/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.bin
+          path: ble-cliapp/BUILD/DISCO_L475VG_IOT01A/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.bin
           if-no-files-found: error
 
       - name: Trigger lava workflow
