@@ -20,19 +20,22 @@ jobs:
 
       - name: Build NRF cli-app
         run: |
+          pwd
+          ls $HOME
           cd ble-cliapp
           mbed deploy
           mbed compile -t GCC_ARM -m NRF52840_DK --profile toolchains_profile.json || exit 1
           pwd
           echo ${{ github.workspace }}
-          ls ${{ github.workspace }}
-          ls ${{ github.workspace }}/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
+          ls $HOME
+          //ls ${{ github.workspace }}
+          //ls ${{ github.workspace }}/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
 
       - name: Uploading Binaries
         uses: actions/upload-artifact@v2
         with:
           name: ble-cliapp-GCC_ARM-NRF52840_DK-${{ github.event.pull_request.head.sha || github.sha }}
-          path: ${{ github.workspace }}/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
+          path: $HOME/ble-cliapp/BUILD/NRF52840_DK/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.hex
           if-no-files-found: error
 
       - name: Build DISCO cli-app
@@ -43,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ble-cliapp-GCC_ARM-DISCO_L475VG_IOT01A-${{ github.event.pull_request.head.sha || github.sha }}
-          path: ${{ github.workspace }}/ble-cliapp/BUILD/DISCO_L475VG_IOT01A/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.bin
+          path: $HOME/ble-cliapp/BUILD/DISCO_L475VG_IOT01A/GCC_ARM-TOOLCHAINS_PROFILE/ble-cliapp.bin
           if-no-files-found: error
 
       - name: Trigger lava workflow
